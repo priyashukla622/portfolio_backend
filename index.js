@@ -4,11 +4,13 @@ import dataRoute from "./routes/dataRoute.js";
 import cors from "cors";
 import dotenv from 'dotenv';
 dotenv.config();
-const port=process.env.PORT ||5000;
+const port=process.env.PORT;
 const app=express()
 app.use(express.json());
 app.use(cors())
-mongoose.connect(process.env.MONGO_URL)
+// mongoose.connect(MONGO_URL)
+const mongoURI = process.env.MONGODB_URL;
+mongoose.connect(mongoURI)
 .then(()=>{
     console.log("mongodb connected successfully")
 })
