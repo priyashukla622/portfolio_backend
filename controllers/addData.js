@@ -1,16 +1,12 @@
 import  scheemaModel from "../models/scheema.js";
 
-// POST: Add portfolio data
 export const addPortfolio = async (req, res) => {
   try {
     const data = req.body;
-
-    // Optional: check if data already exists
     const existing = await scheemaModel.findOne();
     if (existing) {
       return res.status(400).json({ message: "Portfolio already exists" });
     }
-
     const newPortfolio = new scheemaModel(data);
     await newPortfolio.save();
 
